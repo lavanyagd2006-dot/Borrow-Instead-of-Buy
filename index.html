@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Borrow Instead of Buy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a class="logo" href="#">♻️ Borrow<span>Instead</span></a>
+    <div class="navlinks">
+      <a href="#home">Home</a><a href="#browse">Browse</a><a href="#how">How It Works</a>
+      <a href="#dashboard">Dashboard</a><a href="#about">About</a>
+    </div>
+    <button class="btn primary" onclick="openModal('loginModal')">Login / Sign Up</button>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div>
+    <span class="badge">🌱 Save money • Reduce waste • Share more</span>
+    <h1>Borrow what you need.<br><span>Don't buy what you won't.</span></h1>
+    <p>Find useful items near you, borrow them for a short time, and return them when you're done.</p>
+    <div class="hero-buttons"><a class="btn primary" href="#browse">🔎 Find an Item</a><button class="btn outline" onclick="openModal('listModal')">＋ List an Item</button></div>
+    <div class="trust"><span>⭐ 4.9/5 community rating</span><span>🔒 Secure requests</span><span>🌍 Sustainable sharing</span></div>
+  </div>
+  <div class="hero-card">
+    <div class="mini-icon">🤝</div><h3>Community Sharing</h3>
+    <p>Turn unused things into useful resources for your neighborhood.</p>
+    <div class="impact"><b id="impactCount">0</b><small>items available to borrow</small></div>
+  </div>
+</section>
+
+<section id="browse" class="section">
+  <div class="section-title"><div><span class="eyebrow">DISCOVER</span><h2>Find something to borrow</h2></div></div>
+  <div class="searchbar">
+    <input id="search" placeholder="Search cameras, tools, books, tents...">
+    <select id="category"><option value="">All categories</option><option>Electronics</option><option>Outdoor</option><option>Tools</option><option>Events</option><option>Books</option><option>Sports</option><option>Home</option></select>
+    <button class="btn primary" onclick="loadItems()">Search</button>
+  </div>
+  <div id="itemsGrid" class="grid"></div>
+</section>
+
+<section id="how" class="section soft">
+  <div class="section-title center"><span class="eyebrow">SIMPLE & SAFE</span><h2>How Borrow Instead of Buy works</h2></div>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Search</h3><p>Search for an item by category or location.</p></div>
+    <div class="step"><b>2</b><h3>Request</h3><p>Select dates and send a borrow request to the owner.</p></div>
+    <div class="step"><b>3</b><h3>Borrow</h3><p>Meet safely or arrange pickup and use the item.</p></div>
+    <div class="step"><b>4</b><h3>Return & Rate</h3><p>Return on time and rate your experience.</p></div>
+  </div>
+</section>
+
+<section id="dashboard" class="section">
+  <div class="section-title"><div><span class="eyebrow">MY SPACE</span><h2>Dashboard</h2></div></div>
+  <div class="dashboard-grid">
+    <div class="dash-card"><span>📦</span><b id="statItems">0</b><small>Items Listed</small></div>
+    <div class="dash-card"><span>📩</span><b id="statRequests">0</b><small>Borrow Requests</small></div>
+    <div class="dash-card"><span>🟢</span><b id="statAvailable">0</b><small>Available Items</small></div>
+    <div class="dash-card"><span>🌿</span><b id="statCategories">0</b><small>Categories</small></div>
+  </div>
+  <div class="dashboard-panel">
+    <div><h3>Recent Borrow Requests</h3><div id="requests">No requests yet.</div></div>
+    <button class="btn primary" onclick="openModal('listModal')">＋ List New Item</button>
+  </div>
+</section>
+
+<section id="features" class="section soft">
+  <div class="section-title center"><span class="eyebrow">PLATFORM FEATURES</span><h2>Everything you need for community borrowing</h2></div>
+  <div class="feature-grid">
+    <article>🔎<h3>Smart Search</h3><p>Search by item, category and location.</p></article>
+    <article>📅<h3>Date Requests</h3><p>Choose borrowing and return dates.</p></article>
+    <article>💬<h3>Owner Communication</h3><p>Request and discuss pickup details.</p></article>
+    <article>⭐<h3>Ratings & Reviews</h3><p>Build trust through community ratings.</p></article>
+    <article>🛡️<h3>Trust & Safety</h3><p>Profiles, request status and reporting can be added.</p></article>
+    <article>🌱<h3>Impact Tracking</h3><p>Show money saved and purchases avoided.</p></article>
+    <article>📍<h3>Location Based</h3><p>Discover items close to your area.</p></article>
+    <article>🔔<h3>Notifications</h3><p>Notify users about requests, approvals and returns.</p></article>
+  </div>
+</section>
+
+<section id="about" class="section about">
+  <span class="eyebrow">ABOUT THE CEP PROJECT</span>
+  <h2>Borrow Instead of Buy</h2>
+  <p>A community platform designed to encourage sharing, affordability and sustainable consumption. Instead of buying an item used only once or twice, users can borrow it from someone nearby.</p>
+  <div class="impact-row"><div><b>💰</b><span>Save money</span></div><div><b>♻️</b><span>Reduce waste</span></div><div><b>🤝</b><span>Build community</span></div><div><b>📦</b><span>Reuse resources</span></div></div>
+</section>
+</main>
+
+<footer><b>♻️ Borrow Instead of Buy</b><span>CEP Project • Share more, buy less.</span></footer>
+
+<!-- Login -->
+<div class="modal" id="loginModal"><div class="modal-box"><button class="close" onclick="closeModal('loginModal')">×</button><h2>Welcome back</h2><input placeholder="Email"><input type="password" placeholder="Password"><button class="btn primary full" onclick="demoLogin()">Login</button><p class="muted">Demo login — connect Firebase/MySQL for real authentication.</p></div></div>
+
+<!-- List item -->
+<div class="modal" id="listModal"><div class="modal-box wide"><button class="close" onclick="closeModal('listModal')">×</button><h2>List an Item</h2>
+<form id="listForm" class="form-grid">
+<input name="name" placeholder="Item name *" required><input name="owner" placeholder="Your name *" required>
+<select name="category" required><option value="">Category *</option><option>Electronics</option><option>Outdoor</option><option>Tools</option><option>Events</option><option>Books</option><option>Sports</option><option>Home</option></select>
+<input name="location" placeholder="Location *" required><input name="price" type="number" min="0" placeholder="Borrow price (₹)"><select name="period"><option>day</option><option>hour</option><option>week</option></select>
+<input name="image" placeholder="Image URL (optional)"><textarea name="description" placeholder="Description"></textarea>
+<button class="btn primary full" type="submit">Publish Item</button>
+</form></div></div>
+
+<!-- Borrow -->
+<div class="modal" id="borrowModal"><div class="modal-box"><button class="close" onclick="closeModal('borrowModal')">×</button><h2 id="borrowTitle">Borrow Item</h2>
+<form id="borrowForm"><input type="hidden" name="itemId"><input name="borrower" placeholder="Your name *" required><label>Start date</label><input type="date" name="startDate" required><label>Return date</label><input type="date" name="endDate" required><button class="btn primary full">Send Borrow Request</button></form></div></div>
+
+<script src="app.js"></script>
+</body>
+</html>
